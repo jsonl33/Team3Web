@@ -1,5 +1,17 @@
 package com.team3web.shop.controller;
-// ì‚¬ìš©ì ê´€ë ¨ ì»¨íŠ¸ë¡¤ëŸ¬
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+// »ç¿ëÀÚ °ü·Ã ÄÁÆ®·Ñ·¯
+
+@Controller
 public class UserController {
+	
+	@RequestMapping(value = "/register" , method = RequestMethod.GET)
+    public String login() {
+		return "/user/register";
+	}
 
 }
