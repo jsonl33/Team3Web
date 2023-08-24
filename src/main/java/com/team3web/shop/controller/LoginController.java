@@ -14,6 +14,7 @@ public class LoginController {
 		return "/user/login";
 	}
 	
+	
 	@RequestMapping(value = "/", method = RequestMethod.POST)	// �엫�떆�꽕�젙
 	public String loginCheck(@RequestParam String id, @RequestParam String pw) {
 		return "index";

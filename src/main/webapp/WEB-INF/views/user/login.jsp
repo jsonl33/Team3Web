@@ -132,7 +132,7 @@
 	<jsp:include page="../header.jsp" />
 	<div class="login-container">
 		<h1>로그인</h1>
-		 <form action="<%=request.getContextPath()%>/login" method="post" onsubmit="loginEvent();">
+		 <form action="<%=request.getContextPath()%>/" method="post" onsubmit="loginEvent();">
             <!-- 로그인 폼 내용 -->
                 <div class="input-group">
                     <label for="id">아이디:</label> 
