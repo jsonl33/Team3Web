@@ -4,14 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-// »ç¿ëÀÚ °ü·Ã ÄÁÆ®·Ñ·¯
+// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½
 
 @Controller
 public class UserController {
 	
 	@RequestMapping(value = "/register" , method = RequestMethod.GET)
-    public String login() {
+    public String register() {
 		return "/user/register";
 	}
-
+	
 }

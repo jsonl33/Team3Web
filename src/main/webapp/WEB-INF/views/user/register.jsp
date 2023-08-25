@@ -5,56 +5,131 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>회원가입</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>Team3Web</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<!-- JQuery는 추후에 추가할 예정 -->
+<!-- link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script-->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-$(document).ready(function() {
-    // 주소 검색 창 띄우기
-    $("#searchAddress").click(function() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                $("#address").val(data.roadAddress);
-                $("#detailAddress").focus();
+//다음 주소 검색 api
+function searchAddress() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+        	var roadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 참고 항목 변수
+            
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                extraRoadAddr += data.bname;
             }
-        }).open();
-    });
-});
+            
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+                extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+             }
+            
+            if(extraRoadAddr !== ''){
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+            
+            document.getElementById('zipCode').value = data.zonecode; //우편번호
+            document.getElementById("address").value = roadAddr; //도로명 주소
+            //document.getElementById("NOaddress").value = data.jibunAddress; //일반 주소
+            
+         	// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+            if(roadAddr !== ''){
+                document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+            } else {
+                document.getElementById("sample4_extraAddress").value = '';
+            }
+            var guideTextBox = document.getElementById("guide");
+            
+         	// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+            if(data.autoRoadAddress) {
+                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                guideTextBox.style.display = 'block';
+                
+            } else if(data.autoJibunAddress) {
+                var expJibunAddr = data.autoJibunAddress;
+                guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                guideTextBox.style.display = 'block';
+            } else {
+                guideTextBox.innerHTML = '';
+                guideTextBox.style.display = 'none';
+            }
+        }
+   	}).open();
+}
+
+//생년월일 선택창
+function searchBirthdate() {
+    var today = new Date();
+    var currentYear = today.getFullYear();
+    var currentMonth = today.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줌
+    var currentDay = today.getDate();
+
+    var yearSelect = document.getElementById("year");
+    var monthSelect = document.getElementById("month");
+    var daySelect = document.getElementById("day");
+
+    // 생년월일 연도 선택
+    for (var year = 1900; year <= currentYear; year++) {
+        var option = document.createElement("option");
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+    }
+
+    // 생년월일 월 선택
+    for (var month = 1; month <= 12; month++) {
+        var option = document.createElement("option");
+        option.value = month;
+        option.textContent = month;
+        monthSelect.appendChild(option);
+    }
+
+    // 생년월일 일 선택
+    for (var day = 1; day <= 31; day++) {
+        var option = document.createElement("option");
+        option.value = day;
+        option.textContent = day;
+        daySelect.appendChild(option);
+    }
+
+    yearSelect.addEventListener("change", updateAge);
+    monthSelect.addEventListener("change", updateAge);
+    daySelect.addEventListener("change", updateAge);
+}
+
+function updateAge() {
+    var today = new Date();
+    var currentYear = today.getFullYear();
+    var currentMonth = today.getMonth() + 1;
+    var currentDay = today.getDate();
+
+    var selectedYear = parseInt(document.getElementById("year").value);
+    var selectedMonth = parseInt(document.getElementById("month").value);
+    var selectedDay = parseInt(document.getElementById("day").value);
+
+    var age = currentYear - selectedYear;
+    if (selectedMonth > currentMonth || (selectedMonth === currentMonth && selectedDay > currentDay)) {
+        age--;
+    }
+
+    document.getElementById("age").value = age;
+}
+
+}
 </script>
 <style>
-.navbar {
-        border-top: 3.5px solid #000000;
-        height: 70px;
-        line-height: 70px;
-    }
-
-.navbar-sub {
-        border-bottom: 1px solid #e0e0e0;
-    }
-    
-.nav-link {
-    	font-weight: 600; 
-    	color: black;
-    }
-
-.navbar-brand {
-        font-size: 28px;
-        font-weight: bold;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-.nav-item i {
-        font-size: 18px;
-        vertical-align: middle;
-        margin-left: 6px;
-        margin-right: 6px;
-    }
-
 /* 주소 검색 버튼 스타일 */
-#searchAddress {
+.searchAddress {
     background-color: #007bff;
     color: white;
     border: none;
@@ -131,40 +206,7 @@ $(document).ready(function() {
 </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg style="background-color: #ffffff;">
-		  <div class="container-fluid">
-		    <h1><a class="navbar-brand mx-auto" href="/shop/">Team3Web</a></h1>
-		
-		    <ul class="navbar-nav ml-auto">
-		      <li class="nav-item">
-		      	<i class="bi bi-search"></i>
-		      </li>
-		      <li class="nav-item px-lg-2">
-		        <i class="bi bi-person-circle"></i>
-		      </li>
-		      <li class="nav-item">
-		        <i class="bi bi-bag"></i>
-		      </li>
-		    </ul>
-		
-		  </div>
-		</nav>
-			<nav class="navbar-sub">
-			<ul class="nav justify-content-center">
-			  <li class="nav-sub-item">
-			    <a class="nav-link" href="#">남성</a>
-			  </li>
-			  <li class="nav-sub-item">
-			    <a class="nav-link" href="#">여성</a>
-			  </li>
-			  <li class="nav-sub-item">
-			    <a class="nav-link" href="#">악세사리</a>
-			  </li>
-			  <li class="nav-sub-item">
-			    <a class="nav-link" href="#">고객센터</a>
-			  </li>
-			</ul>
-		</nav>
+	<jsp:include page="../header.jsp" />
     <div class="container">
         <div class="form-container">
             <h1 class="text-center">회원가입</h1>
@@ -175,16 +217,27 @@ $(document).ready(function() {
                 </div>
                 <div class="form-group">
                     <label for="password">비밀번호:</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="영문,숫자,특수문자 조합 8-16자" required>
+                    <input type="password" id="pw" name="pw" class="form-control" placeholder="영문,숫자,특수문자 조합 8-16자" required>
                 </div>
                	<div class="form-group">
                	<label for="name">이름:</label>
         			<input type="text" id="name" required><br>
 				</div>
-				<div class="form-group">
-        		<label for="age">나이:</label>
-        			<input type="number" id="age" required><br>
-				</div>
+				 <div class="form-group">
+                    <label for="birthdate">생년월일:</label>
+                    <div id="birthGroup">
+                        <select id="year" name="year" onchange="updateAge()" required>
+                            <option value="">년도</option>
+                        </select>
+                        <select id="month" name="month" onchange="updateAge()" required>
+                            <option value="">월</option>
+                        </select>
+                        <select id="day" name="day" onchange="updateAge()" required>
+                            <option value="">일</option>
+                        </select>
+                        <input type="text" id="age" name="age" placeholder="나이" readonly>
+                    </div>
+                </div>
 				<div class="form-group">
         		<label>성별:</label>
         			<input type="radio" id="male" name="gender" value="남자" required>
@@ -193,23 +246,17 @@ $(document).ready(function() {
         		<label for="female">여자</label><br>
 				</div>
 				<div class="form-group">
-        		<label for="birthdate">생년월일:</label>
-        			<input type="date" id="birthdate" required><br>
-				</div>
-				<div class="form-group">
         		<label for="email">이메일:</label>
         			<input type="email" id="email" required><br>
                	</div>
                 <div class="form-group">
                     <label for="addressGroup">주소:</label>
                     <div id="addressGroup">
-                        <input type="text" id="address" name="address" class="form-control" placeholder="주소를 검색하세요" required readonly>
-                        <button type="button" id="searchAddress">주소 검색</button>
+                        <input type="text" id="address" name="address" class="form-control" placeholder="주소" onclick="searchAddress()" required readonly>
+                        <button class="button" class="searchAddress" onclick="searchAddress()">주소 검색</button>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="detailAddress">상세 주소:</label>
-                    <input type="text" id="detailAddress" name="detailAddress" class="form-control" placeholder="상세 주소를 입력하세요" required>
+                    <input type="text" id="zipCode" name="zipCode" class="form-control" placeholder="우편번호" onclick="searchAddress()" required readonly>
+                    <input type="text" id="detailAddress" name="detailAddress" class="form-control" placeholder="상세주소 입력" required>
                 </div>
                 <button type="submit" class="btn btn-primary">회원가입</button>
                 <ul class="register-sub">
