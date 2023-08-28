@@ -18,7 +18,8 @@
 	        alert("=== 이것은 테스트라네 ===\n아이디: " + userID + "\n비밀번호: " + userPW);
 	        window.location.href = "/index";
 	 }
-    </script>
+</script>
+
 <style>
 /* 로그인 폼을 감싸는 컨테이너 */
 .login-container {
@@ -143,6 +144,7 @@
                     <input type="password" id="pw" name="pw" placeholder="비밀번호를 입력하거라" required>
                 </div>
                 <button type="submit">로그인</button>
+                <a type="button " class="btn btn-success btn-block" href="${url}">네이버 로그인</a>
                 <ul class="login-sub">
                 	<li class="login-sub-item">
                 		<a class="login-link" href="register">회원가입</a>
@@ -169,5 +171,7 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 	<script src="/shop/resources/js/script.js"></script>
+	<!-- 네이버 로그인 -->
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 </body>
 </html>

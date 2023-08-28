@@ -124,8 +124,6 @@ function updateAge() {
 
     document.getElementById("age").value = age;
 }
-
-}
 </script>
 <style>
 /* 주소 검색 버튼 스타일 */
@@ -235,7 +233,7 @@ function updateAge() {
                         <select id="day" name="day" onchange="updateAge()" required>
                             <option value="">일</option>
                         </select>
-                        <input type="text" id="age" name="age" placeholder="나이" readonly>
+                        <input type="text" id="age" name="age" placeholder="나이" required>
                     </div>
                 </div>
 				<div class="form-group">
