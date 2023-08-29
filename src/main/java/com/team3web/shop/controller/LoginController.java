@@ -1,6 +1,7 @@
 package com.team3web.shop.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.team3web.shop.api.KakaoLoginBO;
 import com.team3web.shop.api.NaverLoginBO;
 
 
@@ -23,6 +25,7 @@ public class LoginController {
 	
 	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
+	private KakaoLoginBO kakaoLoginBO;
 	private String apiResult = null;
 	
 	@Autowired
@@ -43,7 +46,7 @@ public class LoginController {
 		return "/user/login";
 	}
 	
-	//네이버 로그인 성공시 callback호출 메소드
+	// 네이버 로그인
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException {
 	System.out.println("callback 체크");
@@ -69,6 +72,20 @@ public class LoginController {
 	model.addAttribute("result", apiResult);
 	return "login";
 	}
+	
+	// 카카오 로그인
+	@RequestMapping(value="/kakaoLogin", method=RequestMethod.GET)
+	public String kakaoLogin(@RequestParam(value = "code", required = false) String code) throws Exception {
+		System.out.println("카카오 로그인 체크" + code);
+		String access_Token = kakaoLoginBO.getAccessToken(code);
+		HashMap<String, Object> userInfo = kakaoLoginBO.getUserInfo(access_Token);
+		System.out.println("###access_Token#### : " + access_Token);
+		System.out.println("###nickname#### : " + userInfo.get("nickname"));
+		System.out.println("###email#### : " + userInfo.get("email"));
+		return "/user/login";
+    	}
+	
+	
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)	// �엫�떆�꽕�젙
