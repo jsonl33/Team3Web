@@ -20,7 +20,7 @@ public class NaverLoginBO {
 	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";
 	// 네이버 아이디로 인증 URL 생성 Method
 	public String getAuthorizationUrl(HttpSession session) {
-		// 세션 유효성 검증을 위하여 난수를 생성
+		// 세션 유효성 검증을 위하여 난수 생성
 		String state = generateRandomString();
 		setSession(session,state);
 		// Scribe에서 제공하는 인증 URL 생성 기능을 이용하여 네아로 인증 URL 생성 

@@ -1,5 +1,10 @@
 package com.team3web.shop.service;
-// 사용자 관련 비즈니스 로직
-public class UserService {
 
+import com.team3web.shop.vo.UserVO;
+
+public interface UserService {
+    UserVO getUserById(String id);
+    void registerUser(UserVO user);
+    void updateUser(UserVO user);
+    void deleteUser(String id);
 }

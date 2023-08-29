@@ -1,5 +1,10 @@
 package com.team3web.shop.dao;
 
-public class UserDAO {
+import com.team3web.shop.vo.UserVO;
 
+public interface UserDAO {
+    UserVO getUserById(String id);
+    void insertUser(UserVO user);
+    void updateUser(UserVO user);
+    void deleteUser(String id);
 }

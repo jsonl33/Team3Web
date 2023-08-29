@@ -153,14 +153,13 @@
                 </div>
                 <button type="submit">로그인</button><hr>
                 <div class="login-button">
-    			<a href="${url}" class="btn btn_login_naver">
-        			<img src="<%=request.getContextPath()%>/resources/img/naverLogin_white.png" 
+    			<a href="${naverUrl}" class="btn btn_login_naver">
+        			<img src="<%=request.getContextPath()%>/resources/img/icon/naverLogin_white.png" 
         			class="btn-icon" alt="네이버 로그인"></a>
         			<br>
-        			<a class="p-2" class="btn btn_login_kakao"
-        			href="https://kauth.kakao.com/oauth/authorize?client_id=473b250b46e3a08eb8db0f1fb6578aa8&redirect_uri=http://localhost:7996/shop/login/kakao&response_type=code">
-					<img src="<%=request.getContextPath()%>/resources/icon/kakao_login_large_narrow.png" 
-					style="height:60px" alt="카카오 로그인"></a>
+        		<a href="${kakaoUrl}" class="btn btn_login_kakao">
+					<img src="<%=request.getContextPath()%>/resources/img/icon/kakao_login_medium_wide.png" 
+					class="btn-icon" alt="카카오 로그인"></a>
 				</div>
 
                 <ul class="login-sub">

@@ -13,7 +13,7 @@ create table shop_user
   EMAIL     VARCHAR2(30)                 ,
   NICKNAME VARCHAR2(30)                ,
   ADDRESS   VARCHAR2(20)                  ,
-  BIRTHDAY  DATE                  
+  BIRTHDAY  DATE                  ,
   JOINDATE  VARCHAR2(20)                  ,
   UPDATEDATE VARCHAR2(20)
 );
