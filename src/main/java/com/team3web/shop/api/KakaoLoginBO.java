@@ -3,6 +3,8 @@ package com.team3web.shop.api;
 import java.io.IOException;
 import java.util.UUID;
 import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth2AccessToken;
@@ -11,6 +13,7 @@ import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
+@Component
 public class KakaoLoginBO {
     private final static String CLIENT_ID = "473b250b46e3a08eb8db0f1fb6578aa8";
     private final static String CLIENT_SECRET = "yrCANAIRom6BEirbeDTICez0ECpo7ABg";
