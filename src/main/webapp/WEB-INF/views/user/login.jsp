@@ -18,6 +18,34 @@
 	        alert("=== 이것은 테스트라네 ===\n아이디: " + userID + "\n비밀번호: " + userPW);
 	        window.location.href = "/index";
 	 }
+	 
+	 function openNaver() {
+		  // 팝업 창 열기
+		  var popup = window.open('${naverUrl}', '카카오톡 로그인', 'width=600,height=400');
+		  
+		  // 팝업이 닫힐 때의 이벤트 처리
+		  window.addEventListener('message', function(event) {
+		    if (event.data === 'loginSuccess') {
+		      // 로그인 성공 시 처리
+		      popup.close();
+		      // 부모 창에서 추가 처리
+		    }
+		  });
+		}
+	 
+	 function openKakao() {
+		  // 팝업 창 열기
+		  var popup = window.open('${kakaoUrl}', '카카오톡 로그인', 'width=600,height=400');
+		  
+		  // 팝업이 닫힐 때의 이벤트 처리
+		  window.addEventListener('message', function(event) {
+		    if (event.data === 'loginSuccess') {
+		      // 로그인 성공 시 처리
+		      popup.close();
+		      // 부모 창에서 추가 처리
+		    }
+		  });
+		}
 </script>
 
 <style>
@@ -153,18 +181,18 @@
                 </div>
                 <button type="submit">로그인</button><hr>
                 <div class="login-button">
-    			<a href="${naverUrl}" class="btn btn_login_naver">
+    			<a href="" class="btn btn_login_naver" onclick="openNaver()">
         			<img src="<%=request.getContextPath()%>/resources/img/icon/naverLogin_white.png" 
         			class="btn-icon" alt="네이버 로그인"></a>
         			<br>
-        		<a href="${kakaoUrl}" class="btn btn_login_kakao">
+        		<a href="" class="btn btn_login_kakao" onclick="openKakao()">
 					<img src="<%=request.getContextPath()%>/resources/img/icon/kakao_login_medium_wide.png" 
 					class="btn-icon" alt="카카오 로그인"></a>
 				</div>
 
                 <ul class="login-sub">
                 	<li class="login-sub-item">
-                		<a class="login-link" href="register">회원가입</a>
+                		<a class="login-link" href="choiceRegister">회원가입</a>
                 	</li>
                 	<li class="login-sub-item">
                     	<span class="login-sub-divider">|</span>
