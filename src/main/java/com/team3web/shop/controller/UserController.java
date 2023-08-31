@@ -46,7 +46,17 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register(Model model, HttpSession session) {
+    public String register(@RequestParam("id") String id, // 각 input 필드에 해당하는 파라미터들 추가
+            @RequestParam("pw") String pw,
+            @RequestParam("email") String email,
+            @RequestParam("name") String name,
+            @RequestParam("nickname") String nickname,
+            @RequestParam("birthday") String birthday,
+            @RequestParam("gender") String gender,
+            @RequestParam("zipCode") String zipCode,
+            @RequestParam("address") String address,
+            @RequestParam("Address") String Address,
+            Model model, HttpSession session) {
         /* 세션에서 가져온 네이버 및 카카오 로그인 정보 */
     	// 네이버
         String naverNickname = (String) session.getAttribute("naverNickname");
@@ -81,6 +91,5 @@ public class UserController {
     public String userKakaoCallback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException {
         return loginController.kakaoCallback(model, code, state, session);
     }
-
 
 }

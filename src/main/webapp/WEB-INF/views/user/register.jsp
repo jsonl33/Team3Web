@@ -151,7 +151,7 @@ function searchAddress() {
     <div class="container">
         <div class="form-container">
             <h1 class="text-center">회원가입</h1>
-            <form>
+            <form method="post" action="<%= request.getContextPath() %>/register">
                 <div class="form-group">
                     <label for="id">아이디:</label>
                     <input type="text" id="id" name="id" class="form-control" placeholder="ex)Team3Web@Team3Web.co.kr" required>
@@ -162,27 +162,27 @@ function searchAddress() {
                 </div>
                 <div class="form-group">
         		<label for="email">이메일:</label>
-        			<input type="email" id="email" required><br>
+        			<input type="email" id="email" class="form-control" required><br>
                	</div>
                	<div class="form-group">
                	<label for="name">이름:</label>
-        			<input type="text" id="name" required><br>
+        			<input type="text" id="name" class="form-control" required><br>
 				</div>
 				<div class="form-group">
                	<label for="nickname">닉네임:</label>
-        			<input type="text" id="nickname" required><br>
+        			<input type="text" id="nickname" class="form-control" required><br>
 				</div>
 				 <div class="form-group">
                     <label for="birthdate">생년월일:</label>
                     <div id="birthGroup">
-                        <input type="text" id="age" name="birthday" placeholder="ex)20001231" required>
+                        <input type="text" id="age" name="birthday" class="form-control" placeholder="ex)20001231" required>
                     </div>
                 </div>
 				<div class="form-group">
         		<label>성별:</label>
-        			<input type="radio" id="male" name="gender" value="남자" required>
+        			<input type="radio" id="male" name="gender" class="form-control" value="남자" required>
         		<label for="male">남자</label>
-        			<input type="radio" id="female" name="gender" value="여자" required>
+        			<input type="radio" id="female" name="gender" class="form-control" value="여자" required>
         		<label for="female">여자</label><br>
 				</div>
                 <div class="form-group">
