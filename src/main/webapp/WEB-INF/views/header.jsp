@@ -62,7 +62,7 @@
 }
 
 .offcanvas-body a:hover {
-    color: #007bff;
+    color: #777;
 }
 
 /* 주 카테고리 스타일 */
@@ -255,11 +255,14 @@
 	                        columnElement.appendChild(mainCategoryElem);
 
 	                        Object.entries(subCategoriesLinks).forEach(([subCategory, link]) => {
-	                            const subCategoryElem = document.createElement("a");
-	                            subCategoryElem.textContent = subCategory;
-	                            subCategoryElem.href = link;
-	                            subCategoryElem.className = "sub-category";  
-	                            columnElement.appendChild(subCategoryElem);
+	                            // "path"는 추가하지 않습니다.
+	                            if (subCategory !== "path") {
+	                                const subCategoryElem = document.createElement("a");
+	                                subCategoryElem.textContent = subCategory;
+	                                subCategoryElem.href = link;
+	                                subCategoryElem.className = "sub-category";
+	                                columnElement.appendChild(subCategoryElem);
+	                            }
 	                        });
 
 	                        rowElement.appendChild(columnElement);
