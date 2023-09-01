@@ -67,63 +67,6 @@ function searchAddress() {
    	}).open();
 }
 
-//생년월일 선택창
-function searchBirthdate() {
-    var today = new Date();
-    var currentYear = today.getFullYear();
-    var currentMonth = today.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줌
-    var currentDay = today.getDate();
-
-    var yearSelect = document.getElementById("year");
-    var monthSelect = document.getElementById("month");
-    var daySelect = document.getElementById("day");
-
-    // 생년월일 연도 선택
-    for (var year = 1900; year <= currentYear; year++) {
-        var option = document.createElement("option");
-        option.value = year;
-        option.textContent = year;
-        yearSelect.appendChild(option);
-    }
-
-    // 생년월일 월 선택
-    for (var month = 1; month <= 12; month++) {
-        var option = document.createElement("option");
-        option.value = month;
-        option.textContent = month;
-        monthSelect.appendChild(option);
-    }
-
-    // 생년월일 일 선택
-    for (var day = 1; day <= 31; day++) {
-        var option = document.createElement("option");
-        option.value = day;
-        option.textContent = day;
-        daySelect.appendChild(option);
-    }
-
-    yearSelect.addEventListener("change", updateAge);
-    monthSelect.addEventListener("change", updateAge);
-    daySelect.addEventListener("change", updateAge);
-}
-
-function updateAge() {
-    var today = new Date();
-    var currentYear = today.getFullYear();
-    var currentMonth = today.getMonth() + 1;
-    var currentDay = today.getDate();
-
-    var selectedYear = parseInt(document.getElementById("year").value);
-    var selectedMonth = parseInt(document.getElementById("month").value);
-    var selectedDay = parseInt(document.getElementById("day").value);
-
-    var age = currentYear - selectedYear;
-    if (selectedMonth > currentMonth || (selectedMonth === currentMonth && selectedDay > currentDay)) {
-        age--;
-    }
-
-    document.getElementById("age").value = age;
-}
 </script>
 <style>
 /* 주소 검색 버튼 스타일 */
@@ -208,7 +151,7 @@ function updateAge() {
     <div class="container">
         <div class="form-container">
             <h1 class="text-center">회원가입</h1>
-            <form>
+            <form method="post" action="<%= request.getContextPath() %>/register">
                 <div class="form-group">
                     <label for="id">아이디:</label>
                     <input type="text" id="id" name="id" class="form-control" placeholder="ex)Team3Web@Team3Web.co.kr" required>
@@ -217,36 +160,31 @@ function updateAge() {
                     <label for="password">비밀번호:</label>
                     <input type="password" id="pw" name="pw" class="form-control" placeholder="영문,숫자,특수문자 조합 8-16자" required>
                 </div>
+                <div class="form-group">
+        		<label for="email">이메일:</label>
+        			<input type="email" id="email" class="form-control" required><br>
+               	</div>
                	<div class="form-group">
                	<label for="name">이름:</label>
-        			<input type="text" id="name" required><br>
+        			<input type="text" id="name" class="form-control" required><br>
+				</div>
+				<div class="form-group">
+               	<label for="nickname">닉네임:</label>
+        			<input type="text" id="nickname" class="form-control" required><br>
 				</div>
 				 <div class="form-group">
                     <label for="birthdate">생년월일:</label>
                     <div id="birthGroup">
-                        <select id="year" name="year" onchange="updateAge()" required>
-                            <option value="">년도</option>
-                        </select>
-                        <select id="month" name="month" onchange="updateAge()" required>
-                            <option value="">월</option>
-                        </select>
-                        <select id="day" name="day" onchange="updateAge()" required>
-                            <option value="">일</option>
-                        </select>
-                        <input type="text" id="age" name="age" placeholder="나이" required>
+                        <input type="text" id="age" name="birthday" class="form-control" placeholder="ex)20001231" required>
                     </div>
                 </div>
 				<div class="form-group">
         		<label>성별:</label>
-        			<input type="radio" id="male" name="gender" value="남자" required>
+        			<input type="radio" id="male" name="gender" class="form-control" value="남자" required>
         		<label for="male">남자</label>
-        			<input type="radio" id="female" name="gender" value="여자" required>
+        			<input type="radio" id="female" name="gender" class="form-control" value="여자" required>
         		<label for="female">여자</label><br>
 				</div>
-				<div class="form-group">
-        		<label for="email">이메일:</label>
-        			<input type="email" id="email" required><br>
-               	</div>
                 <div class="form-group">
                     <label for="addressGroup">주소:</label>
                     <div id="addressGroup">
