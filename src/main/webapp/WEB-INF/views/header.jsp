@@ -113,7 +113,7 @@
 				<li class="nav-item"><a class="nav-link" href="#">여성</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">악세사리</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
-				<li class="nav-item about-item"><a class="nav-link" href="#">About</a></li>
+				<li class="nav-item about-item"><a class="nav-link" href="<%=request.getContextPath()%>/about">About</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -236,43 +236,46 @@
 
 	            const navItems = document.querySelectorAll(".nav-underline .nav-item a");
 	            navItems.forEach(item => {
-	                item.addEventListener("click", function(event) {
-	                    event.preventDefault();
+	                // "about" 항목을 제외하고 이벤트 리스너를 추가합니다.
+	                if (item.textContent.trim().toLowerCase() !== "about") {
+	                    item.addEventListener("click", function(event) {
+	                        event.preventDefault();
 
-	                    const offcanvasBody = document.querySelector("#offcanvasTop .offcanvas-body");
-	                    offcanvasBody.innerHTML = '<div class="row"></div>';
+	                        const offcanvasBody = document.querySelector("#offcanvasTop .offcanvas-body");
+	                        offcanvasBody.innerHTML = '<div class="row"></div>';
 
-	                    const rowElement = offcanvasBody.querySelector(".row");
+	                        const rowElement = offcanvasBody.querySelector(".row");
 
-	                    for (const [mainCategory, subCategoriesLinks] of Object.entries(categoryLinkMapping)) {
-	                        const columnElement = document.createElement("div");
-	                        columnElement.classList.add("col");
+	                        for (const [mainCategory, subCategoriesLinks] of Object.entries(categoryLinkMapping)) {
+	                            const columnElement = document.createElement("div");
+	                            columnElement.classList.add("col");
 
-	                        const mainCategoryElem = document.createElement("a");
-	                        mainCategoryElem.textContent = mainCategory;
-	                        mainCategoryElem.href = categoryLinkMapping[mainCategory].path;
-	                        mainCategoryElem.className = "main-category";  
-	                        columnElement.appendChild(mainCategoryElem);
+	                            const mainCategoryElem = document.createElement("a");
+	                            mainCategoryElem.textContent = mainCategory;
+	                            mainCategoryElem.href = categoryLinkMapping[mainCategory].path;
+	                            mainCategoryElem.className = "main-category";  
+	                            columnElement.appendChild(mainCategoryElem);
 
-	                        Object.entries(subCategoriesLinks).forEach(([subCategory, link]) => {
-	                            // "path"는 추가하지 않습니다.
-	                            if (subCategory !== "path") {
-	                                const subCategoryElem = document.createElement("a");
-	                                subCategoryElem.textContent = subCategory;
-	                                subCategoryElem.href = link;
-	                                subCategoryElem.className = "sub-category";
-	                                columnElement.appendChild(subCategoryElem);
-	                            }
-	                        });
+	                            Object.entries(subCategoriesLinks).forEach(([subCategory, link]) => {
+	                                // "path"는 추가하지 않습니다.
+	                                if (subCategory !== "path") {
+	                                    const subCategoryElem = document.createElement("a");
+	                                    subCategoryElem.textContent = subCategory;
+	                                    subCategoryElem.href = link;
+	                                    subCategoryElem.className = "sub-category";
+	                                    columnElement.appendChild(subCategoryElem);
+	                                }
+	                            });
 
-	                        rowElement.appendChild(columnElement);
-	                    }
+	                            rowElement.appendChild(columnElement);
+	                        }
 
-	                    closeSearchForm(); 
+	                        closeSearchForm(); 
 
-	                    const offcanvasInstance = new bootstrap.Offcanvas(document.getElementById("offcanvasTop"));
-	                    offcanvasInstance.show();
-	                });
+	                        const offcanvasInstance = new bootstrap.Offcanvas(document.getElementById("offcanvasTop"));
+	                        offcanvasInstance.show();
+	                    });
+	                }
 	            });
 
 	            document.getElementById('searchIcon').addEventListener('click', function() {
