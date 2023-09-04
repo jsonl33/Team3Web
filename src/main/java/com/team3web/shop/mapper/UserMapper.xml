@@ -4,6 +4,54 @@
 	
 	<mapper namespace="com.team3web.shop.mapper.UserMapper">
 	
+	<insert id="insertUser" parameterType="User">
 	
+	INSERT INTO MEMBERUSER
+	(
+	 	ID
+	 	,PW
+	 	,NAME
+	 	,GENDER
+	 	,PHONE
+	 	,EMAIL
+	 	,NICKNAME
+	 	,ADDRESS
+	 	,BIRTHDAY
+	 	,JOINDATE
+	)
+	VALUES
+	(
+		#{id}
+		,#{pw}
+		,#{name}
+		,#{gender}
+		,#{phone}
+		,#{email}
+		,#{nickname}
+		,#{address}
+		,#{birthday}
+		,sysdate
+	)
+	</insert>
+	
+	<select id="loginUser" parameterType="User" resultType="User">
+	SELECT 
+		ID
+	 	,PW
+	 	,NAME
+	 	,GENDER
+	 	,PHONE
+	 	,EMAIL
+	 	,NICKNAME
+	 	,ADDRESS
+	 	,BIRTHDAY
+	 	,JOINDATE
+	 FROM
+	 	USER
+	 WHERE
+	 	ID=#{id} AND
+	 	PW=#{pw}
+
+	</select>
 	
 	</mapper>

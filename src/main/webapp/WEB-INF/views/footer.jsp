@@ -65,6 +65,10 @@
         display: flex;
         gap: 15px;
     }
+    .footer_menu {
+    	display: flex;
+    	justify-content: space-between;
+	}
     .btn_business, .btn.solid.small {
         display: inline-flex;
         align-items: center;
@@ -119,7 +123,7 @@
                     <ul class="menu_list">
                         <li class="menu_item"><a href="#" class="menu_link">공지사항</a></li>
                         <li class="menu_item"><a href="#" target="_blank" class="menu_link">서비스 소개</a></li>
-                        <li class="menu_item"><a href="#" target="_self" class="menu_link">스토어 안내</a></li>
+                        <li class="menu_item"><a href="/shop/shopmap" target="_self" class="menu_link">스토어 안내</a></li>
                         <li class="menu_item"><a href="#" target="_blank" class="menu_link">판매자 방문접수</a></li>
                     </ul>
                 </div>
@@ -133,6 +137,7 @@
                 <li class="term_item"><a href="#" class="term_link">이용약관</a></li>
                 <li class="term_item privacy"><a href="#" class="term_link">개인정보처리방침</a></li>
             </ul>
+            <br>
             <div class="footer_sns">
                 <div class="sns_box">
                     <a href="#" aria-label="인스타그램" class="sns" style="font-size: 21px;"><i class="bi bi-instagram"></i></a>
@@ -140,6 +145,7 @@
                     <a href="#" aria-label="깃허브" class="sns" style="font-size: 21px;"><i class="bi bi-github"></i></a>
                 </div>
             </div>
+            <br>
             <div class="business_info">
                 <div class="info_list">
                     <dl class="info_item">

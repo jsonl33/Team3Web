@@ -209,6 +209,8 @@
                 </ul>
         </form>
 	</div>
+	<br><br><br>
+	<jsp:include page="../footer.jsp" />
 	
 	<!-- Bootstrap JS and Popper.js -->
 	<script

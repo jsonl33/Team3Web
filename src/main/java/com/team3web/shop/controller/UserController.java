@@ -51,9 +51,6 @@ public class UserController {
             @RequestParam("nickname") String nickname,
             @RequestParam("birthday") String birthday,
             @RequestParam("gender") String gender,
-            @RequestParam("zipCode") String zipCode,
-            @RequestParam("address") String address,
-            @RequestParam("Address") String Address,
             Model model, HttpSession session) {
         String naverNickname = (String) session.getAttribute("naverNickname");
         String naverName = (String) session.getAttribute("naverName");
@@ -73,6 +70,7 @@ public class UserController {
 
         return "/user/register";
     }
+    
     
     @RequestMapping(value = "/naver/user/callback", method = { RequestMethod.GET, RequestMethod.POST })
     public String userNaverCallback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException {

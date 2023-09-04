@@ -66,6 +66,9 @@
     <!-- Static Map Container -->
     
 	<div id="staticMap"></div>
+	
+	<jsp:include page="footer.jsp" />
+	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c8e0312389b0efbe8c4d5c3aede7ada4"></script>
     <script>
 

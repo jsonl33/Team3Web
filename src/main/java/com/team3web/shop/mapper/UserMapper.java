@@ -5,10 +5,8 @@ import com.team3web.shop.vo.UserVO;
 public interface UserMapper {
 	
 	
-    UserVO getUserById(String id);
-    void insertUser(UserVO user);
-    void updateUser(UserVO user);
-    void deleteUser(String id);
+	public int insertUser(UserVO user);
+	public UserVO loginUser(UserVO user);
     
 }
 

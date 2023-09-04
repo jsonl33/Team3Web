@@ -38,11 +38,11 @@ public class LoginController {
 	@RequestMapping(value = "/login" , method = { RequestMethod.GET, RequestMethod.POST })
     public String login(Model model, HttpSession session) {
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		System.out.println("�꽕�씠踰�: " + naverAuthUrl);
+		System.out.println("네이버: " + naverAuthUrl);
 		model.addAttribute("naverUrl", naverAuthUrl);
 		
 	    String kakaoAuthUrl = kakaoLoginBO.getAuthorizationUrl(session);
-	    System.out.println("移댁뭅�삤: " + kakaoAuthUrl);
+	    System.out.println("카카오: " + kakaoAuthUrl);
 	    model.addAttribute("kakaoUrl", kakaoAuthUrl);
 	    
 		return "/user/login";
