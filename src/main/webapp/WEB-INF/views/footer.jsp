@@ -97,7 +97,7 @@
     <div class="inner">
         <div class="service_area">
             <div class="customer_service">
-                <strong class="service_title">고객센터<a href="tel:1588-7813" class="sevice_tel">1588-7813</a></strong>
+                <strong class="service_title">고객센터<a href="tel:1588-0000" class="sevice_tel">1588-0000</a></strong>
                 <div class="service_time">
                     <dl class="time_box">
                         <dt class="time_term">운영시간 평일 11:00 - 18:00 (토∙일, 공휴일 휴무) 점심시간 평일 13:00 - 14:00</dt>
