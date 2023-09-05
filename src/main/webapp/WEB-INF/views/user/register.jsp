@@ -37,7 +37,7 @@ function searchAddress() {
                 extraRoadAddr = ' (' + extraRoadAddr + ')';
             }
             
-            document.getElementById('zipCode').value = data.zonecode; //우편번호
+            document.getElementById('zipcode').value = data.zonecode; //우편번호
             document.getElementById("address").value = roadAddr; //도로명 주소
             //document.getElementById("NOaddress").value = data.jibunAddress; //일반 주소
             
@@ -49,24 +49,15 @@ function searchAddress() {
             }
             var guideTextBox = document.getElementById("guide");
             
-         	// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-            if(data.autoRoadAddress) {
-                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                guideTextBox.style.display = 'block';
-                
-            } else if(data.autoJibunAddress) {
-                var expJibunAddr = data.autoJibunAddress;
-                guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                guideTextBox.style.display = 'block';
-            } else {
-                guideTextBox.innerHTML = '';
-                guideTextBox.style.display = 'none';
-            }
         }
    	}).open();
 }
 
+function showRegisterEvent() {
+ 	var Name = document.getElementById("name").value;
+ 	var NickName = document.getElementById("nickname").value;
+    alert(Name + "님 회원가입을 축하합니다!\n닉네임 : "+ NickName);
+}
 </script>
 <style>
 /* 주소 검색 버튼 스타일 */
@@ -158,7 +149,7 @@ function searchAddress() {
                 </div>
                 <div class="form-group">
                     <label for="password">비밀번호:</label>
-                    <input type="password" id="pw" name="pw" class="form-control" placeholder="영문,숫자,특수문자 조합 8-16자" required>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="영문,숫자,특수문자 조합 8-16자" required>
                 </div>
                 <div class="form-group">
         		<label for="email">이메일:</label>
@@ -179,22 +170,21 @@ function searchAddress() {
                     </div>
                 </div>
 				<div class="form-group">
-        		<label>성별:</label>
-        			<input type="radio" id="male" name="gender" class="form-control" value="남자" required>
-        		<label for="male">남자</label>
-        			<input type="radio" id="female" name="gender" class="form-control" value="여자" required>
-        		<label for="female">여자</label><br>
+					<label>성별:</label> <input type="radio" id="male" name="gender" class="form-check-input" value="남자" required>
+					<label for="male" class="form-check-label">남자</label> 
+					<input type="radio" id="female" name="gender" class="form-check-input" value="여자" required> 
+					<label for="female" class="form-check-label">여자</label><br>
 				</div>
-                <div class="form-group">
+				<div class="form-group">
                     <label for="addressGroup">주소:</label>
                     <div id="addressGroup">
                         <input type="text" id="address" name="address" class="form-control" placeholder="주소" onclick="searchAddress()" required readonly>
                         <button class="button" class="searchAddress" onclick="searchAddress()">주소 검색</button>
                     </div>
-                    <input type="text" id="zipCode" name="zipCode" class="form-control" placeholder="우편번호" onclick="searchAddress()" required readonly>
-                    <input type="text" id="detailAddress" name="detailAddress" class="form-control" placeholder="상세주소 입력" required>
+                    <input type="text" id="zipcode" name="zipcode" class="form-control" placeholder="우편번호" onclick="searchAddress()" required readonly>
+                    <input type="text" id="address2" name="address2" class="form-control" placeholder="상세주소 입력" required>
                 </div>
-                <button type="submit" class="btn btn-primary">회원가입</button>
+                <button type="submit" class="btn btn-primary" onclick="showRegisterEvent()">회원가입</button>
                 <ul class="register-sub">
                     <li class="register-sub-item">
                         <a class="register-link" href="login">로그인</a>
@@ -215,5 +205,7 @@ function searchAddress() {
             </form>
         </div>
     </div>
+    <br><br><br>
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

@@ -12,10 +12,12 @@ create table shop_user
   PHONE     VARCHAR2(20)                ,
   EMAIL     VARCHAR2(30)                 ,
   NICKNAME VARCHAR2(30)                ,
+  ZIPCODE VARCHAR2(10)	,
   ADDRESS   VARCHAR2(50)                  ,
+  ADDRESS2 VARCHAR2(30)	,
   BIRTHDAY  VARCHAR2(30)                 ,
-  JOINDATE  DATE                  ,
-  UPDATEDATE DATE
+  JOINDATE  VARCHAR2(20)                  ,
+  UPDATEDATE VARCHAR2(20)
 );
 
 -------------------------------------------------------------------------------- 

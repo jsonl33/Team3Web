@@ -1,35 +1,42 @@
 package com.team3web.shop.dao;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team3web.shop.vo.UserVO;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.mybatis.spring.SqlSessionTemplate;
+import java.util.List;
+
 @Repository
 public class UserDAOImpl implements UserDAO {
-
+	
     @Autowired
-    private SqlSession sqlSession;
-
-    @Override
-    public UserVO getUserById(String id) {
-        return sqlSession.selectOne("userMapper.getUserById", id);
-    }
+    private SqlSessionTemplate sqlSession;
 
     @Override
     public void insertUser(UserVO user) {
-        sqlSession.insert("userMapper.insertUser", user);
+        sqlSession.insert("UserMapper.insertUser", user);
     }
 
     @Override
     public void updateUser(UserVO user) {
-        sqlSession.update("userMapper.updateUser", user);
+        sqlSession.update("UserMapper.updateUser", user);
     }
 
     @Override
-    public void deleteUser(String id) {
-        sqlSession.delete("userMapper.deleteUser", id);
+    public void deleteUser(String userId) {
+        sqlSession.delete("UserMapper.deleteUser", userId);
+    }
+
+    @Override
+    public UserVO getUserById(String userId) {
+        return sqlSession.selectOne("UserMapper.getUserById", userId);
+    }
+
+    @Override
+    public List<UserVO> getAllUsers() {
+        return sqlSession.selectList("UserMapper.getAllUsers");
     }
 }
 

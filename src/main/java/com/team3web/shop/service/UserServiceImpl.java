@@ -1,8 +1,8 @@
 package com.team3web.shop.service;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.team3web.shop.dao.UserDAO;
 import com.team3web.shop.vo.UserVO;
 
@@ -13,12 +13,7 @@ public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
 
     @Override
-    public UserVO getUserById(String id) {
-        return userDAO.getUserById(id);
-    }
-
-    @Override
-    public void registerUser(UserVO user) {
+    public void insertUser(UserVO user) {
         userDAO.insertUser(user);
     }
 
@@ -28,8 +23,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(String id) {
-        userDAO.deleteUser(id);
+    public void deleteUser(String userId) {
+        userDAO.deleteUser(userId);
+    }
+
+    @Override
+    public UserVO getUserById(String userId) {
+        return userDAO.getUserById(userId);
+    }
+
+    @Override
+    public List<UserVO> getAllUsers() {
+        return userDAO.getAllUsers();
     }
 }
-

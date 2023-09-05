@@ -5,30 +5,31 @@
 	<mapper namespace="com.team3web.shop.mapper.UserMapper">
 
 	<!-- 저장하기 : 회원 가입 -->
-	<insert id="insert" parameterType="UserVO">
-		insert into user
-		(id,
-		password,name,gender,phone,email,nickname,address,birthday)
-		values
-		(shop_user.nextval, #{id}, #{password}, #{name}, #{gender}, #{phone},
-		#{email}, #{nickname}, #{address}, #{birthday},
-		0,SYSDATE)
+	<insert id="insertUser" parameterType="UserVO">
+		insert into shop_user
+			(id, password, name, gender, phone, email, nickname, zipcode, address, address2, birthday, joindate)
+		values 
+			(#{id}, #{password}, #{name}, #{gender}, #{phone}, #{email}, #{nickname}, #{zipcode}, #{address}, #{address2}, #{birthday}, to_char(sysdate, 'YYYYMMDD HH24:MI:SS'))
 	</insert>
+	
 	<!-- 수정하기 : 회원 정보 수정 -->
-	<update id="update" parameterType="UserVO">
+	<update id="updateUser" parameterType="UserVO">
 		update
 		shop_user
 		set
 		phone = #{phone},
 		email = #{email},
 		nickname = #{nickname},
+		zipcode = #{zipcode},
 		address = #{address},
+		address2 = #{address2},
 		birthday = #{birthday},
 		where
 		id=#{id}
 	</update>
+	
 	<!-- 삭제하기 : 회원 탈퇴 -->
-	<delete id="delete" parameterType="String">
+	<delete id="deleteUser" parameterType="String">
 		delete from shop_user where
 		id=#{id}
 	</delete>
