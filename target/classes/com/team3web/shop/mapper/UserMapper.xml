@@ -6,11 +6,12 @@
 
 	<!-- 저장하기 : 회원 가입 -->
 	<insert id="insertUser" parameterType="UserVO">
-		insert into shop_user
-			(id, password, name, gender, phone, email, nickname, zipcode, address, address2, birthday, joindate)
-		values 
-			(#{id}, #{password}, #{name}, #{gender}, #{phone}, #{email}, #{nickname}, #{zipcode}, #{address}, #{address2}, #{birthday}, to_char(sysdate, 'YYYYMMDD HH24:MI:SS'))
+   		insert into shop_user
+      		(id, password, name, gender, phone, email, nickname, zipcode, address, birthday, joindate)
+   		values 
+      		(#{id}, #{password}, #{name}, #{gender}, #{phone}, #{email}, #{nickname}, #{zipcode}, #{address}, #{birthday}, to_char(sysdate, 'YYYYMMDD HH24:MI:SS'))
 	</insert>
+
 	
 	<!-- 수정하기 : 회원 정보 수정 -->
 	<update id="updateUser" parameterType="UserVO">
@@ -22,7 +23,6 @@
 		nickname = #{nickname},
 		zipcode = #{zipcode},
 		address = #{address},
-		address2 = #{address2},
 		birthday = #{birthday},
 		where
 		id=#{id}

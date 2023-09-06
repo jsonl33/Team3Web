@@ -14,8 +14,7 @@ create table shop_user
   NICKNAME VARCHAR2(30)                ,
   ZIPCODE VARCHAR2(10)	,
   ADDRESS   VARCHAR2(50)                  ,
-  ADDRESS2 VARCHAR2(30)	,
-  BIRTHDAY  VARCHAR2(30)                 ,
+  BIRTHDAY  DATE                 ,
   JOINDATE  VARCHAR2(20)                  ,
   UPDATEDATE VARCHAR2(20)
 );

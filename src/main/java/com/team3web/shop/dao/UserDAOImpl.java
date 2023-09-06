@@ -2,6 +2,7 @@ package com.team3web.shop.dao;
 
 import org.springframework.stereotype.Repository;
 
+import com.team3web.shop.mapper.UserMapper;
 import com.team3web.shop.vo.UserVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void insertUser(UserVO user) {
-        sqlSession.insert("UserMapper.insertUser", user);
+    	sqlSession.getMapper(UserMapper.class).insertUser(user);
     }
 
     @Override

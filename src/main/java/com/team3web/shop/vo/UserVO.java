@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
@@ -41,8 +43,11 @@ public class UserVO {
 	@NotNull(message="필수 사항은 반드시 입력하세요")
 	private String gender;
 	
+	@NotNull(message="닉네임을 작성해주세요")
+	private String nickname;
+	
 	@NotNull
-	@Pattern(regexp = "\\d{3}-\\d{3,4}-\\d{4}", message="연락처가 올바르지 않습니다.")
+	@Pattern(regexp = "\\d{3}\\d{3,4}\\d{4}", message="연락처가 올바르지 않습니다.")
 	private String phone;
 	
 	@NotNull
@@ -60,7 +65,8 @@ public class UserVO {
 	private String address; // 기본주소 + 상세주소
 	
 	@Past(message="생일은 금일 기준 이전 일이 들어가야 합니다.")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyyMMdd")
+	@Temporal(TemporalType.DATE)
 	@NotNull
 	private Date birthday;
 
@@ -75,6 +81,7 @@ public class UserVO {
 		this.name = user.getName();
 		this.email = user.getEmail();
 		this.gender = user.getGender();
+		this.nickname = user.getNickname();
 		this.phone = user.getPhone();
 		this.zipcode = user.getZipcode();
 		this.roadAddr1 = user.getRoadAddr1();
@@ -100,6 +107,7 @@ public class UserVO {
 				this.password = map.get("password")[0];
 				this.name = map.get("name")[0];
 				this.gender = map.get("gender")[0];
+				this.nickname = map.get("nickname")[0];
 				this.phone = map.get("phone")[0];
 				this.email = map.get("email")[0];
 				// 우편번호

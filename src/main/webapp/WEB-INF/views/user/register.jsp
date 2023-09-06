@@ -38,7 +38,7 @@ function searchAddress() {
             }
             
             document.getElementById('zipcode').value = data.zonecode; //우편번호
-            document.getElementById("address").value = roadAddr; //도로명 주소
+            document.getElementById("roadAddr1").value = roadAddr; //도로명 주소
             //document.getElementById("NOaddress").value = data.jibunAddress; //일반 주소
             
          	// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
@@ -139,6 +139,7 @@ function showRegisterEvent() {
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
+	<br><br><br><br>
     <div class="container">
         <div class="form-container">
             <h1 class="text-center">회원가입</h1>
@@ -153,20 +154,24 @@ function showRegisterEvent() {
                 </div>
                 <div class="form-group">
         		<label for="email">이메일:</label>
-        			<input type="email" id="email" class="form-control" required><br>
+        			<input type="email" id="email" name="email" class="form-control" required><br>
                	</div>
                	<div class="form-group">
                	<label for="name">이름:</label>
-        			<input type="text" id="name" class="form-control" required><br>
+        			<input type="text" id="name" name="name" class="form-control" required><br>
 				</div>
 				<div class="form-group">
                	<label for="nickname">닉네임:</label>
-        			<input type="text" id="nickname" class="form-control" required><br>
+        			<input type="text" id="nickname" name="nickname" class="form-control" required><br>
+				</div>
+				<div class="form-group">
+               	<label for="phone">전화번호:</label>
+        			<input type="text" id="phone" name="phone" class="form-control" placeholder="ex)01012345678" required><br>
 				</div>
 				 <div class="form-group">
                     <label for="birthdate">생년월일:</label>
                     <div id="birthGroup">
-                        <input type="text" id="age" name="birthday" class="form-control" placeholder="ex)20001231" required>
+                        <input type="text" id="birthday" name="birthday" class="form-control" placeholder="ex)20001231" required>
                     </div>
                 </div>
 				<div class="form-group">
@@ -178,11 +183,11 @@ function showRegisterEvent() {
 				<div class="form-group">
                     <label for="addressGroup">주소:</label>
                     <div id="addressGroup">
-                        <input type="text" id="address" name="address" class="form-control" placeholder="주소" onclick="searchAddress()" required readonly>
+                        <input type="text" id="roadAddr1" name="roadAddr1" class="form-control" placeholder="주소" onclick="searchAddress()" required readonly>
                         <button class="button" class="searchAddress" onclick="searchAddress()">주소 검색</button>
                     </div>
                     <input type="text" id="zipcode" name="zipcode" class="form-control" placeholder="우편번호" onclick="searchAddress()" required readonly>
-                    <input type="text" id="address2" name="address2" class="form-control" placeholder="상세주소 입력" required>
+                    <input type="text" id="roadAddr2" name="roadAddr2" class="form-control" placeholder="상세주소 입력" required>
                 </div>
                 <button type="submit" class="btn btn-primary" onclick="showRegisterEvent()">회원가입</button>
                 <ul class="register-sub">
